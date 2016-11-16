@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+          <launchConfigurationType
+            delegate="turnus.orcc.profiler.ui.code.OrccCodeAnalysisLaunchDelegate"
+            id="turnus.orcc.profiler.code.launchConfigurationType"
+            modes="run, profile, debug"
+            name="TURNUS static code analysis"
+            public="true">
+      </launchConfigurationType>
+          <launchConfigurationType
+                delegate="turnus.orcc.profiler.ui.dynamic.OrccDynamicInterpreterLaunchDelegate"
+                id="turnus.orcc.profiler.dynamic.interpreter.launchConfigurationType"
+                modes="run, profile, debug"
+                name="TURNUS dynamic code interpretation"
+                public="true">
+          </launchConfigurationType>
+          <launchConfigurationType
+                delegate="turnus.orcc.profiler.ui.dynamic.OrccDynamicExecutionLaunchDelegate"
+                id="turnus.orcc.profiler.dynamic.execution.launchConfigurationType"
+                modes="run, profile, debug"
+                name="TURNUS dynamic code execution"
+                public="true">
+          </launchConfigurationType>
+          <launchConfigurationType
+                delegate="turnus.orcc.profiler.ui.dynamic.OrccNumaExecutionLaunchDelegate"
+                id="turnus.orcc.profiler.dynamic.numa.launchConfigurationType"
+                modes="run, profile, debug"
+                name="TURNUS dynamic NUMA analysis"
+                public="true">
+          </launchConfigurationType>
+           <launchConfigurationType
+                delegate="turnus.orcc.profiler.ui.dynamic.TabuSearchPerformanceEstimationLaunchDelegate"
+                id="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType"
+                modes="run, profile, debug"
+                name="TURNUS tabu search (NUMA + performance estimation)"
+                public="true">
+          </launchConfigurationType>
+   </extension>
+   
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="turnus.orcc.profiler.ui.code.tab.OrccCodeProfilingTabGroup"
+            id="turnus.orcc.profiler.code.launchConfigurationTabGroup"
+            type="turnus.orcc.profiler.code.launchConfigurationType">
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="turnus.orcc.profiler.ui.dynamic.tab.OrccDynamicInterpreterTabGroup"
+            id="turnus.orcc.profiler.dynamic.interpreter.launchConfigurationTabGroup"
+            type="turnus.orcc.profiler.dynamic.interpreter.launchConfigurationType">
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="turnus.orcc.profiler.ui.dynamic.tab.OrccDynamicExecutionTabGroup"
+            id="turnus.orcc.profiler.dynamic.execution.launchConfigurationTabGroup"
+            type="turnus.orcc.profiler.dynamic.execution.launchConfigurationType">
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="turnus.orcc.profiler.ui.dynamic.tab.OrccNumaExecutionTabGroup"
+            id="turnus.orcc.profiler.dynamic.numa.launchConfigurationTabGroup"
+            type="turnus.orcc.profiler.dynamic.numa.launchConfigurationType">
+      </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="turnus.orcc.profiler.ui.dynamic.tab.TabuSearchNumaTabGroup"
+            id="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationTabGroup"
+            type="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType">
+      </launchConfigurationTabGroup>
+   </extension>
+   
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="turnus.orcc.profiler.code.launchConfigurationType"
+            icon="icon/code.png"
+            id="turnus.orcc.profiler.code.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+      <launchConfigurationTypeImage
+            configTypeID="turnus.orcc.profiler.dynamic.interpreter.launchConfigurationType"
+            icon="icon/interpreter.png"
+            id="turnus.orcc.profiler.dynamic.interpreter.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+      <launchConfigurationTypeImage
+            configTypeID="turnus.orcc.profiler.dynamic.execution.launchConfigurationType"
+            icon="icon/execution.png"
+            id="turnus.orcc.profiler.dynamic.execution.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+      <launchConfigurationTypeImage
+            configTypeID="turnus.orcc.profiler.dynamic.numa.launchConfigurationType"
+            icon="icon/numa.png"
+            id="turnus.orcc.profiler.dynamic.numa.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+      <launchConfigurationTypeImage
+            configTypeID="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType"
+            icon="icon/search.png"
+            id="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+   </extension>
+   
+    <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="turnus.orcc.profiler.ui.code.OrccCodeAnalysisLaunchShortcut"
+            icon="icon/code.png"
+            id="turnus.orcc.profiler.code.launchShortcut"
+            label="TURNUS static code analysis"
+            modes="run,  profile, debug">
+         <configurationType
+               id="turnus.orcc.profiler.code.launchConfigurationType">
+         </configurationType>
+         <description
+               description="Statically profile the CAL code with the TURNUS Orcc code analyser"
+               mode="run,  profile, debug">
+         </description>
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="turnus.file.extension.isXDF">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="turnus.orcc.profiler.ui.dynamic.OrccDynamicInterpreterLaunchShortcut"
+            icon="icon/interpreter.png"
+            id="turnus.orcc.profiler.dynamic.interpreter.launchShortcut"
+            label="TURNUS dynamic interpretation analysis"
+            modes="run,  profile, debug">
+         <configurationType
+               id="turnus.orcc.profiler.dynamic.interpreter.launchConfigurationType">
+         </configurationType>
+         <description
+               description="Dynamically profile the CAL code with the TURNUS Orcc code interpreter"
+               mode="run,  profile, debug">
+         </description>
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="turnus.file.extension.isXDF">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="turnus.orcc.profiler.ui.dynamic.OrccDynamicExecutionLaunchShortcut"
+            icon="icon/execution.png"
+            id="turnus.orcc.profiler.dynamic.execution.launchShortcut"
+            label="TURNUS dynamic execution analysis"
+            modes="run,  profile, debug">
+         <configurationType
+               id="turnus.orcc.profiler.dynamic.execution.launchConfigurationType">
+         </configurationType>
+         <description
+               description="Dynamically profile the CAL code with the TURNUS Orcc code executor"
+               mode="run,  profile, debug">
+         </description>
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="turnus.file.extension.isXDF">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="turnus.orcc.profiler.ui.dynamic.OrccNumaExecutionLaunchShortcut"
+            icon="icon/numa.png"
+            id="turnus.orcc.profiler.dynamic.numa.launchShortcut"
+            label="TURNUS dynamic NUMA analysis"
+            modes="run,  profile, debug">
+         <configurationType
+               id="turnus.orcc.profiler.dynamic.numa.launchConfigurationType">
+         </configurationType>
+         <description
+               description="Dynamically profile the CAL code with the TURNUS Orcc NUMA executor"
+               mode="run,  profile, debug">
+         </description>
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="turnus.file.extension.isXDF">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="turnus.orcc.profiler.ui.dynamic.TabuSearchPerformanceEstimationLaunchShortcut"
+            icon="icon/numa.png"
+            id="turnus.orcc.profiler.dynamic.tabu.pe.launchShortcut"
+            label="TURNUS tabu search (NUMA + performance estimation)"
+            modes="run,  profile, debug">
+         <configurationType
+               id="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType">
+         </configurationType>
+         <description
+               description="Partition the CAL program using tabu search with TURNUS Orcc NUMA executor and performance estimation"
+               mode="run,  profile, debug">
+         </description>
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="turnus.file.extension.isXDF">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+ </extension>
+
+</plugin>

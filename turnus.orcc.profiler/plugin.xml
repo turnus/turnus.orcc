@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="scheduler" name="turnus.orcc.profiler.dynamic.scheduler" schema="schema/scheduler.exsd"/>
+   <extension point="turnus.orcc.profiler.scheduler">
+      <scheduler
+            class="turnus.orcc.profiler.dynamic.interpreter.scheduler.impl.RoundRobinScheduler"
+            name="RoundRobin"/>
+      <scheduler
+            class="turnus.orcc.profiler.dynamic.interpreter.scheduler.impl.NonPreemptiveScheduler"
+            name="NonPreemptive"/>
+      <scheduler
+            class="turnus.orcc.profiler.dynamic.interpreter.scheduler.impl.ParallelScheduler"
+            name="Parallel"/>
+   </extension>
+   <extension
+         id="dynamicExecution"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="turnus.orcc.profiler.dynamic.execution.OrccDynamicExecutionCli">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="dynamicInterpreter"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="turnus.orcc.profiler.dynamic.interpreter.OrccDynamicInterpreterCli">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="codeAnalysis"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="turnus.orcc.profiler.code.OrccCodeAnalysisCli">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="dynamicNuma"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="turnus.orcc.profiler.dynamic.numa.OrccNumaExecutionCli">
+         </run>
+      </application>
+   </extension>
+
+</plugin>

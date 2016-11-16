@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: turnus.orcc.profiler.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: turnus.orcc.profiler.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ turnus.orcc.profiler;bundle-version="1.0.0",
+ net.sf.orcc.ui;bundle-version="2.3.1",
+ turnus.ui;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
