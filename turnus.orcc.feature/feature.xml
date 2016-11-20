@@ -25,17 +25,12 @@ This file is part of TURNUS. TURNUS is free software: you can redistribute it an
       <discovery label="mars" url="http://download.eclipse.org/releases/mars"/>
    </url>
 
-   <includes
-         id="turnus.feature"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="turnus.common" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="turnus.model" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="turnus.analysis"/>
       <import plugin="turnus.orcc.profiler" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="turnus.ui" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="net.sf.orcc" version="2.3.1.qualifier"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="net.sf.orcc.core" version="2.3.1" match="greaterOrEqual"/>
@@ -59,6 +54,62 @@ This file is part of TURNUS. TURNUS is free software: you can redistribute it an
 
    <plugin
          id="turnus.orcc.profiler.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.backends"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.cal"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.cal.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.models"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.simulators"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="net.sf.orcc.xdf.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
