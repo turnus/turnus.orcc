@@ -13,6 +13,7 @@ In order to build the plugins you should clone this repository and initialize th
 
 ```
 git clone https://github.com/turnus/turnus.orcc.git
+cd turnus.orcc
 git submodule init 
 git submodule update
 cd orcc/eclipse/plugins
