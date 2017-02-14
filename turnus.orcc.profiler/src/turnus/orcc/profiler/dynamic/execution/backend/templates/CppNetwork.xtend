@@ -139,12 +139,12 @@ class CppNetwork extends ExprAndTypePrinter {
 		
 		
 			«FOR actor : network.children.filter(typeof(Actor))»
-				delete act_«actor.name»;
+				//delete act_«actor.name»;
 			«ENDFOR»
 			
 			«FOR actor : network.children.filter(typeof(Actor))»
 				«FOR edges : actor.outgoingPortMap.values»
-					delete fifo_«edges.get(0).getAttribute("idNoBcast").objectValue»;
+					//delete fifo_«edges.get(0).getAttribute("idNoBcast").objectValue»;
 				«ENDFOR»
 			«ENDFOR»
 			
