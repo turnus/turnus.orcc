@@ -35,6 +35,7 @@ import static turnus.common.TurnusOptions.BUFFER_SIZE_DEFAULT;
 import static turnus.common.TurnusOptions.CAL_PROJECT;
 import static turnus.common.TurnusOptions.CAL_STIMULUS_FILE;
 import static turnus.common.TurnusOptions.CAL_XDF;
+import static turnus.common.TurnusOptions.OUTPUT_DIRECTORY;
 import static turnus.common.TurnusOptions.SHARED_VARIABLES;
 import static turnus.common.TurnusOptions.VERSIONER;
 import static turnus.orcc.profiler.ProfilerOptions.BUFFER_SIZE_MAP;
@@ -137,6 +138,7 @@ public class OrccDynamicInterpreterCli implements IApplication {
 		CliParser cliParser = new CliParser()//
 				.setOption(CAL_PROJECT, true)//
 				.setOption(CAL_XDF, true)//
+				.setOption(OUTPUT_DIRECTORY, false)//
 				.setOption(SCHEDULER, true)//
 				.setOption(CAL_STIMULUS_FILE, false)//
 				.setOption(VERSIONER, false)//

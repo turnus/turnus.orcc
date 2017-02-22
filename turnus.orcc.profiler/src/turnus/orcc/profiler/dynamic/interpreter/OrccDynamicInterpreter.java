@@ -123,7 +123,7 @@ public class OrccDynamicInterpreter {
 		IFile xdf = null;
 		Versioner fv = null;
 		File stimulus = null;
-		File output = null;
+		File goldenref = null;
 		// parse the options
 		try {
 			Logger.info("Parsing the configuration");
@@ -132,7 +132,7 @@ public class OrccDynamicInterpreter {
 			String xdfFile = configuration.getValue(CAL_XDF);
 			xdf = project.getFile(xdfFile);
 			stimulus = configuration.getValue(CAL_STIMULUS_FILE);
-			output = configuration.getValue(SIMULATION_OUTPUT_FILE);
+			goldenref = configuration.getValue(SIMULATION_OUTPUT_FILE);
 			String versioner = configuration.getValue(VERSIONER, DEFAULT_VERSIONER);
 			fv = VersioningFactory.eINSTANCE.getVersioner(versioner);
 			String schedulerName = configuration.getValue(SCHEDULER);
@@ -143,6 +143,9 @@ public class OrccDynamicInterpreter {
 			Logger.debug("* Versioner: %s (%s)", versioner, fv.getClass().getName());
 			if (stimulus != null) {
 				Logger.debug("* Stimulus: %s", stimulus);
+			}
+			if (goldenref != null) {
+				Logger.debug("* Golden Reference: %s", goldenref);
 			}
 
 			// create output directory
@@ -197,10 +200,10 @@ public class OrccDynamicInterpreter {
 				GenericSource.setInputStimulus(stimulus.getAbsolutePath());
 				GenericSource.setNbLoops(1);
 			}
-			
+
 			// initialize orcc writer actors if required
-			if (output != null) {
-				File outFile = new File(output + "/orcc-simulation-out");
+			if (goldenref != null) {
+				File outFile = new File(goldenref + "/orcc-simulation-out");
 				GenericWriter.setOutputFile(outFile.getAbsolutePath());
 			}
 
