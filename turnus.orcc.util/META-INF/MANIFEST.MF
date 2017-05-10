@@ -8,6 +8,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.apache.commons.math,
  turnus.common,
- turnus.model
+ turnus.model,
+ com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
+
