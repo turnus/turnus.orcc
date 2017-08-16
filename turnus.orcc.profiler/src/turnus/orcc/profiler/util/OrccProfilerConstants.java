@@ -51,5 +51,6 @@ public class OrccProfilerConstants {
 	public static final String LAUNCH_CONFIG_TYPE_NUMA_EXECUTION_ANALYSIS = "turnus.orcc.profiler.dynamic.numa.launchConfigurationType";
 	
 	public static final String LAUNCH_CONFIG_TYPE_TABU_PERFORMANCE_ESTMATION_ANALYSIS = "turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType";
-
+	public static final String LAUNCH_CONFIG_TYPE_BENCHMARK_ANALYSIS = "turnus.orcc.profiler.benchmark.launchConfigurationType";
+	
 }

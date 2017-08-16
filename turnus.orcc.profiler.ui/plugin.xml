@@ -38,6 +38,13 @@
                 name="TURNUS tabu search (NUMA + performance estimation)"
                 public="true">
           </launchConfigurationType>
+           <launchConfigurationType
+                 delegate="turnus.orcc.profiler.ui.benchmark.TurnusBenchmarkLaunchDelegate"
+                 id="turnus.orcc.profiler.benchmark.launchConfigurationType"
+                 modes="run,profile,debug"
+                 name="TURNUS Benchmark"
+                 public="true">
+           </launchConfigurationType>
    </extension>
    
    <extension
@@ -67,6 +74,11 @@
             id="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationTabGroup"
             type="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType">
       </launchConfigurationTabGroup>
+      <launchConfigurationTabGroup
+            class="turnus.orcc.profiler.ui.benchmark.tab.TurnusBenchmarkTabGroup"
+            id="turnus.orcc.profiler.benchmark.launchConfigurationTabGroup"
+            type="turnus.orcc.profiler.benchmark.launchConfigurationType">
+      </launchConfigurationTabGroup>
    </extension>
    
    <extension
@@ -95,6 +107,11 @@
             configTypeID="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationType"
             icon="icon/search.png"
             id="turnus.orcc.profiler.dynamic.tabu.pe.launchConfigurationTypeImage">
+      </launchConfigurationTypeImage>
+      <launchConfigurationTypeImage
+            configTypeID="turnus.orcc.profiler.benchmark.launchConfigurationType"
+            icon="icon/matrix.png"
+            id="turnus.orcc.profiler.benchmark.launchConfigurationTypeImage">
       </launchConfigurationTypeImage>
    </extension>
    
@@ -231,6 +248,36 @@
          </configurationType>
          <description
                description="Partition the CAL program using tabu search with TURNUS Orcc NUMA executor and performance estimation"
+               mode="run,  profile, debug">
+         </description>
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                     <test
+                           forcePluginActivation="true"
+                           property="turnus.file.extension.isXDF">
+                     </test>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="turnus.orcc.profiler.ui.benchmark.TurnusBenchmarkLaunchShortcut"
+            icon="icon/matrix.png"
+            id="turnus.orcc.profiler.benchmark.launchShortcut"
+            label="TURNUS Benchmark"
+            modes="run,  profile, debug">
+         <configurationType
+               id="turnus.orcc.profiler.benchmark.launchConfigurationType">
+         </configurationType>
+         <description
+               description="Compile, run and compare several variations of this CAL program"
                mode="run,  profile, debug">
          </description>
          <contextualLaunch>
