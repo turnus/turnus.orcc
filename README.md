@@ -37,7 +37,7 @@ Successively you can import all the projects in your Eclipse workspace making su
 * net.sf.orcc.xdf.ui
 
 ## Contributors
-* Simone Casale Brunet *(Maintainer, Dynamic code analysis, Dynamic code analysis, Dynamic NUMA analysis)*
+* Simone Casale Brunet *(Maintainer, Static code analysis, Dynamic code analysis, Dynamic NUMA analysis)*
 * Endri Bezati  *(Dynamic code analysis, Dynamic NUMA analysis)*
 * Malgorzata Michalska *(Dynamic NUMA analysis)*
 * Junaid Jameel Ahmad *(Dynamic NUMA analysis)*
