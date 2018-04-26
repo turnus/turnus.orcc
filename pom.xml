@@ -19,7 +19,7 @@
 		<repository>
 			<id>orcc</id>
 			<layout>p2</layout>
-			<url>http://www.turnus.co/addons/orcc/</url>
+			<url>http://scistimm.epfl.ch/turnus/addons/orcc/</url>
 		</repository>
 		<repository>
 			<id>eclipse</id>
