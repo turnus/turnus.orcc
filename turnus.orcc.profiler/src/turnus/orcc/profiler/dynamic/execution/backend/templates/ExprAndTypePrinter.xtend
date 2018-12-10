@@ -73,7 +73,7 @@ class ExprAndTypePrinter extends CommonPrinter {
 
 		val resultingExpr = '''«expr.e1.printExpr(nextPrec, 0)» «op.stringRepresentation» «expr.e2.printExpr(nextPrec, 1)»'''
 
-		if (op.needsParentheses(precedence, branch) || (container != null && op.logical)) {
+		if (op.needsParentheses(precedence, branch) || (container !== null && op.logical)) {
 			'''(«resultingExpr»)'''
 		} else {
 			resultingExpr

@@ -187,12 +187,12 @@ class CppProfiledActor extends CppActor {
 		'''
 			«IF !actor.initializes.contains(action)»
 				«FOR e : action.inputPattern.numTokensMap»
-					«IF actor.incomingPortMap.get(e.key) != null»
+					«IF actor.incomingPortMap.get(e.key) !== null»
 						prof_CONSUME_«e.key.name» += «e.value»;
 					«ENDIF»
 				«ENDFOR»
 				«FOR e : action.outputPattern.numTokensMap»
-					«IF actor.outgoingPortMap.get(e.key) != null»
+					«IF actor.outgoingPortMap.get(e.key) !== null»
 						prof_PRODUCE_«e.key.name» += «e.value»;
 					«ENDIF»
 				«ENDFOR»

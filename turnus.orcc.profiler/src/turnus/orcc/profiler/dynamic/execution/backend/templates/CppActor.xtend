@@ -84,7 +84,7 @@ class CppActor extends ExprAndTypePrinter {
 	}
 
 	def compileInstance() {
-		val connectedOutput = [Port port|actor.outgoingPortMap.get(port) != null]
+		val connectedOutput = [Port port|actor.outgoingPortMap.get(port) !== null]
 		'''
 			#ifndef __«actor.name.toUpperCase»_H__
 			#define __«actor.name.toUpperCase»_H__
@@ -122,8 +122,8 @@ class CppActor extends ExprAndTypePrinter {
 				«actor.name»(«FOR variable : actor.parameters SEPARATOR ", "»«variable.type.doSwitch» «variable.name»«FOR dim : variable.type.dimensions»[«dim»]«ENDFOR»«ENDFOR»)
 				«FOR variable : actor.parameters BEFORE ":" SEPARATOR "\n,"»  «variable.name»(«variable.name»)«ENDFOR»
 				{
-					«FOR v : actor.stateVars.filter(v|v.initialValue != null)»«compileArg(v.type, v.name, v.initialValue)»«ENDFOR»
-					«IF actor.fsm != null»state_ = state_«actor.fsm.initialState.name»;«ENDIF»
+					«FOR v : actor.stateVars.filter(v|v.initialValue !== null)»«compileArg(v.type, v.name, v.initialValue)»«ENDFOR»
+					«IF actor.fsm !== null»state_ = state_«actor.fsm.initialState.name»;«ENDIF»
 					
 					«IF v7Profiling»
 						«FOR i : 0 .. actor.actions.size-1»
@@ -137,13 +137,13 @@ class CppActor extends ExprAndTypePrinter {
 				}
 			
 				«FOR port : actor.inputs»
-					«IF actor.incomingPortMap.get(port) != null»
+					«IF actor.incomingPortMap.get(port) !== null»
 						«port.compilePort(actor.incomingPortMap.get(port).getAttribute("nbReaders").objectValue)»
 					«ENDIF»
 				«ENDFOR»			
 				
 				«FOR port : actor.outputs.filter(connectedOutput)»
-					«IF actor.outgoingPortMap.get(port) != null»
+					«IF actor.outgoingPortMap.get(port) !== null»
 						«port.compilePort(actor.outgoingPortMap.get(port).size)»
 					«ENDIF»
 				«ENDFOR»
@@ -190,7 +190,7 @@ class CppActor extends ExprAndTypePrinter {
 				«FOR variable: actor.stateVars SEPARATOR "\n"»«IF !variable.hasAttribute("shared")»«variable.varDecl»;«ENDIF»«ENDFOR»
 				«FOR port : actor.inputs SEPARATOR "\n"»int status_«port.name»_;«ENDFOR»
 				«FOR port : actor.outputs SEPARATOR "\n"»int status_«port.name»_;«ENDFOR»
-				«IF actor.fsm != null»
+				«IF actor.fsm !== null»
 					enum states
 					{
 						«FOR state : actor.fsm.states SEPARATOR ","»
@@ -285,7 +285,7 @@ class CppActor extends ExprAndTypePrinter {
 			'''
 		} else {
 			'''
-				«IF inst.target!=null»«inst.target.variable.name» = «ENDIF»«inst.procedure.name»(«FOR arg : inst.getArguments SEPARATOR ", "»«arg.compileArg»«ENDFOR»);
+				«IF inst.target!==null»«inst.target.variable.name» = «ENDIF»«inst.procedure.name»(«FOR arg : inst.getArguments SEPARATOR ", "»«arg.compileArg»«ENDFOR»);
 			'''
 		}
 	}
@@ -295,7 +295,7 @@ class CppActor extends ExprAndTypePrinter {
 	'''
 
 	override caseInstReturn(InstReturn inst) '''
-		«IF inst.value != null»return «inst.value.doSwitch»;«ENDIF»
+		«IF inst.value !== null»return «inst.value.doSwitch»;«ENDIF»
 	'''
 
 	override caseInstStore(InstStore inst) '''
@@ -335,14 +335,14 @@ class CppActor extends ExprAndTypePrinter {
 		{
 			«startProcedure(actor.simpleName, action.body.name)»
 			«FOR e : action.inputPattern.numTokensMap»
-				«IF actor.incomingPortMap.get(e.key) != null»
+				«IF actor.incomingPortMap.get(e.key) !== null»
 					«e.key.type.doSwitch»* «e.key.name» = port_«e.key.name»->read_address(«actor.incomingPortMap.get(e.key).getAttribute("fifoId").objectValue»«IF e.value > 1», «e.value»«ENDIF»);
 				«ELSE»
 					«e.key.type.doSwitch» «e.key.name»[«e.value»];
 				«ENDIF»
 			«ENDFOR»
 			«FOR port : action.outputPattern.ports»
-				«IF actor.outgoingPortMap.get(port) != null»
+				«IF actor.outgoingPortMap.get(port) !== null»
 					«port.type.doSwitch»* «port.name» = port_«port.name»->write_address();
 				«ELSE»
 					«port.type.doSwitch» «port.name»«port.type»«FOR dim:port.type.dimensions»[«dim»]«ENDFOR»;
@@ -350,13 +350,13 @@ class CppActor extends ExprAndTypePrinter {
 			«ENDFOR»
 			«action.body.doSwitch»
 			«FOR e : action.inputPattern.numTokensMap»
-				«IF actor.incomingPortMap.get(e.key) != null»
+				«IF actor.incomingPortMap.get(e.key) !== null»
 					port_«e.key.name»->read_advance(«actor.incomingPortMap.get(e.key).getAttribute("fifoId").objectValue»«IF e.value > 1», «e.value»«ENDIF»);
 					status_«e.key.name»_ -= «e.value»;
 				«ENDIF»
 			«ENDFOR»
 			«FOR e : action.outputPattern.numTokensMap»
-				«IF actor.outgoingPortMap.get(e.key) != null»
+				«IF actor.outgoingPortMap.get(e.key) !== null»
 					port_«e.key.name»->write_advance(«IF e.value > 1»«e.value»«ENDIF»);
 					status_«e.key.name»_ -= «e.value»;
 				«ENDIF»
@@ -371,7 +371,7 @@ class CppActor extends ExprAndTypePrinter {
 	}
 
 	def protected varDeclWithInit(Var v) {
-		'''«v.type.doSwitch» «v.name»«FOR dim : v.type.dimensions»[«dim»]«ENDFOR»«IF v.initialValue != null» = «v.initialValue.doSwitch»«ENDIF»'''
+		'''«v.type.doSwitch» «v.name»«FOR dim : v.type.dimensions»[«dim»]«ENDFOR»«IF v.initialValue !== null» = «v.initialValue.doSwitch»«ENDIF»'''
 	}
 
 	def dispatch compileArg(ArgByRef arg) {
@@ -386,19 +386,19 @@ class CppActor extends ExprAndTypePrinter {
 		void action_selection(EStatus& status)
 		{	
 			«FOR port : actor.inputs»
-				«IF actor.incomingPortMap.get(port) != null»
+				«IF actor.incomingPortMap.get(port) !== null»
 					status_«port.name»_=port_«port.name»->count(«actor.incomingPortMap.get(port).getAttribute("fifoId").objectValue»);
 				«ENDIF»
 			«ENDFOR»
 			«FOR port : actor.outputs»
-				«IF actor.outgoingPortMap.get(port) != null»
+				«IF actor.outgoingPortMap.get(port) !== null»
 					status_«port.name»_=port_«port.name»->rooms();
 				«ENDIF»
 			«ENDFOR»
 		
 			bool res = true;
 			while (res) {
-				«IF actor.fsm!=null»
+				«IF actor.fsm!==null»
 					res = false;
 					«FOR action : actor.actionsOutsideFsm BEFORE "if" SEPARATOR "\nelse if"»«action.compileScheduler(null)»«ENDFOR»
 					if(!res) {
@@ -436,7 +436,7 @@ class CppActor extends ExprAndTypePrinter {
 				«ENDIF»
 				res = true;
 				status = hasExecuted;
-				«IF state != null»state_ = state_«state.name»;«ENDIF»
+				«IF state !== null»state_ = state_«state.name»;«ENDIF»
 			}
 		«ELSE»
 			«IF v7Profiling»
@@ -451,7 +451,7 @@ class CppActor extends ExprAndTypePrinter {
 			«ENDIF»
 			res = true;
 			status = hasExecuted;
-			«IF state != null»state_ = state_«state.name»;«ENDIF»
+			«IF state !== null»state_ = state_«state.name»;«ENDIF»
 		«ENDIF»
 	}'''
 
