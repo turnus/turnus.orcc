@@ -28,4 +28,5 @@ Export-Package: turnus.orcc.profiler,
  turnus.orcc.profiler.dynamic.numa,
  turnus.orcc.profiler.dynamic.numa.partitioning,
  turnus.orcc.profiler.util
+Automatic-Module-Name: turnus.orcc.profiler
 
