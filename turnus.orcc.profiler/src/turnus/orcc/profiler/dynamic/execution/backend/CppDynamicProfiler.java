@@ -248,7 +248,7 @@ public class CppDynamicProfiler extends AbstractBackend {
 		new NetworkValidator().doSwitch(network);
 	}
 
-	private void stopIfRequested() {
+	protected void stopIfRequested() {
 		if (monitor != null) {
 			if (monitor.isCanceled()) {
 				throw new OperationCanceledException();

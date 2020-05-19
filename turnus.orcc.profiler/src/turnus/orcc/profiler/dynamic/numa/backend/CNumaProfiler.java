@@ -298,7 +298,7 @@ public class CNumaProfiler extends CBackend{
 		return Result.newInstance();
 	}
 
-	private void stopIfRequested() {
+	protected void stopIfRequested() {
 		if (monitor != null) {
 			if (monitor.isCanceled()) {
 				throw new OperationCanceledException();
