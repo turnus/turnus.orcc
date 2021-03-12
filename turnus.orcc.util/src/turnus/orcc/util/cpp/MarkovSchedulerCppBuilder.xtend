@@ -38,7 +38,7 @@ class MarkovSchedulerCppBuilder {
 					
 					«FOR actor : actors SEPARATOR '\n'»
 						«var state = partition.getAssociatedState(actor)»
-						«IF state != null && !state.outgoings.isEmpty»
+						«IF state !== null && !state.outgoings.isEmpty»
 							s_init_«actor.name»: if(act_«actor.name»->action_selection(status)) goto s_next_«state.name»;
 						«ELSE»
 							// no available states

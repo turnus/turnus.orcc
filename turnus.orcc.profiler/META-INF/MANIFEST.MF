@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: turnus.orcc.profiler,
  turnus.orcc.profiler.code,
@@ -28,4 +28,5 @@ Export-Package: turnus.orcc.profiler,
  turnus.orcc.profiler.dynamic.numa,
  turnus.orcc.profiler.dynamic.numa.partitioning,
  turnus.orcc.profiler.util
+Automatic-Module-Name: turnus.orcc.profiler
 

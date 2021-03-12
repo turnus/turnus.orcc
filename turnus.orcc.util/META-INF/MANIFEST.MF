@@ -6,12 +6,14 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: turnus.orcc.util.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
+ org.apache.commons.math,
  turnus.common,
  turnus.model,
  com.google.guava,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtend.lib,
  org.eclipse.xtend.lib.macro
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: turnus.orcc.util
 

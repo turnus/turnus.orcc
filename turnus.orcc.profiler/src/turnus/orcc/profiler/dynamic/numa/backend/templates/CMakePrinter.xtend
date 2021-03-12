@@ -88,7 +88,7 @@ class CMakePrinter extends CommonPrinter {
 			set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DLINUX -D_GNU_SOURCE -mcmodel=large")
 		endif()
 
-		«IF linkNativeLibFolder != null && !linkNativeLibFolder.isEmpty()»
+		«IF linkNativeLibFolder !== null && !linkNativeLibFolder.isEmpty()»
 			# Native lib
 			set(external_definitions)
 			set(external_include_paths)
